@@ -1,0 +1,16 @@
+@import 'dependencies';
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: $header-height;
+  background-color: $color-header-backgroud;
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+  }
+}

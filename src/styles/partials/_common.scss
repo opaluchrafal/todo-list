@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: $ff-default;
+  font-weight: $fw-regular;
+  color: $color-text;
+}
+
+// TODO: temporary - we need to create core structure first
+h2 {
+  font-size: 24px;
+  font-weight: $fw-medium;
+  color: $color-brand-primary;
+}
+
+// disable yellow background of an input when autocomplete is on (Chrome)
+// sass-lint:disable no-vendor-prefixes
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: color 9999s ease-out, background-color 9999s ease-out;
+  transition-delay: 9999s;
+}
+
+.custom-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+
+  li {
+    &::before {
+      font-size: 16px;
+      content: "•";
+      color: $color-text;
+      margin-right: 0.4em;
+    }
+  }
+}

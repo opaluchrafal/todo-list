@@ -1,0 +1,23 @@
+button {
+
+  &.mat-button,
+  &.mat-raised-button {
+    height: 48px;
+    line-height: 48px;
+    font-family: $ff-default;
+    font-size: $fs-default;
+
+    .mat-icon {
+      @include margin-right(16px);
+      line-height: 36px;
+    }
+  }
+
+  &.mat-button,
+  &.mat-stroked-button {
+    border-width: 3px;
+    padding: 2px 35px;
+    font-family: $ff-default;
+    font-size: $fs-default;
+  }
+}

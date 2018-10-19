@@ -1,0 +1,237 @@
+@mixin ltr() {
+  [dir='ltr'] :host & {
+    @content;
+  }
+
+  [dir='ltr'] & {
+    @content;
+  }
+}
+
+@mixin rtl() {
+  [dir='rtl'] :host & {
+    @content;
+  }
+
+  [dir='rtl'] & {
+    @content;
+  }
+}
+
+// ----------------------------------------------------------------
+@mixin _value-related($property, $dir) {
+  @if $dir==left {
+    @include ltr() {
+      #{$property}: left;
+    }
+
+    @include rtl() {
+      #{$property}: right;
+    }
+  }
+
+  @else if $dir==right {
+    @include ltr() {
+      #{$property}: right;
+    }
+
+    @include rtl() {
+      #{$property}: left;
+    }
+  }
+
+  @else {
+    #{$property}: $dir;
+  }
+}
+
+@mixin _property-related($ltr-property, $rtl-property, $value) {
+  @include ltr() {
+    #{$ltr-property}: $value;
+  }
+
+  @include rtl() {
+    #{$rtl-property}: $value;
+  }
+}
+
+@mixin _property-shorthand($property, $top, $right, $bottom, $left) {
+  @include ltr() {
+    #{$property}: $top $right $bottom $left;
+  }
+
+  @include rtl() {
+    #{$property}: $top $left $bottom $right;
+  }
+}
+
+@mixin center($max-width) {
+  max-width: $max-width;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin full($max-width) {
+  max-width: $max-width;
+}
+
+@mixin icon-size($size) {
+  width: $size;
+  min-width: $size;
+  height: $size;
+  min-height: $size;
+  font-size: $size;
+}
+
+// ----------------------------------------------------------------
+// float
+@mixin float($direction) {
+  @include _value-related(float, $direction);
+}
+
+// text-align
+@mixin text-align($direction) {
+  @include _value-related(text-align, $direction);
+}
+
+// clear
+@mixin clear($direction) {
+  @include _value-related(clear, $direction);
+}
+
+// left / right
+@mixin left($distance) {
+  @include _property-related(left, right, $distance);
+}
+
+@mixin right($distance) {
+  @include _property-related(right, left, $distance);
+}
+
+// padding
+@mixin padding-left($distance) {
+  @include _property-related(padding-left, padding-right, $distance);
+}
+
+@mixin padding-right($distance) {
+  @include _property-related(padding-right, padding-left, $distance);
+}
+
+@mixin padding($top, $right, $bottom, $left) {
+  @include _property-shorthand(padding, $top, $right, $bottom, $left);
+}
+
+// margin
+@mixin margin-left($distance) {
+  @include _property-related(margin-left, margin-right, $distance);
+}
+
+@mixin margin-right($distance) {
+  @include _property-related(margin-right, margin-left, $distance);
+}
+
+@mixin margin($top, $right, $bottom, $left) {
+  @include _property-shorthand(margin, $top, $right, $bottom, $left);
+}
+
+// border color
+@mixin border-left-color($color) {
+  @include _property-related(border-left-color, border-right-color, $color);
+}
+
+@mixin border-right-color($color) {
+  @include _property-related(border-right-color, border-left-color, $color);
+}
+
+@mixin border-color($top, $right, $bottom, $left) {
+  @include _property-shorthand(border-color, $top, $right, $bottom, $left);
+}
+
+// border style
+@mixin border-left-style($style) {
+  @include _property-related(border-left-style, border-right-style, $style);
+}
+
+@mixin border-right-style($style) {
+  @include _property-related(border-right-style, border-left-style, $style);
+}
+
+@mixin border-style($top, $right, $bottom, $left) {
+  @include _property-shorthand(border-style, $top, $right, $bottom, $left);
+}
+
+// border width
+@mixin border-left-width($width) {
+  @include _property-related(border-left-width, border-right-width, $width);
+}
+
+@mixin border-right-width($width) {
+  @include _property-related(border-right-width, border-left-width, $width);
+}
+
+@mixin border-width($top, $right, $bottom, $left) {
+  @include _property-shorthand(border-width, $top, $right, $bottom, $left);
+}
+
+// border
+@mixin border-left($border-style) {
+  @include _property-related(border-left, border-right, $border-style);
+}
+
+@mixin border-right($border-style) {
+  @include _property-related(border-right, border-left, $border-style);
+}
+
+// border-radius
+@mixin border-top-left-radius($radius) {
+  @include _property-related(border-top-left-radius, border-top-right-radius, $radius);
+}
+
+@mixin border-top-right-radius($radius) {
+  @include _property-related(border-top-right-radius, border-top-left-radius, $radius);
+}
+
+@mixin border-bottom-right-radius($radius) {
+  @include _property-related(border-bottom-right-radius, border-bottom-left-radius, $radius);
+}
+
+@mixin border-bottom-left-radius($radius) {
+  @include _property-related(border-bottom-left-radius, border-bottom-right-radius, $radius);
+}
+
+// TODO advanced form border-radius with slash ex 1px 2px 3px 4px / 2px 5px
+@mixin border-radius($top-left, $top-right: null, $bottom-right: null, $bottom-left: null) {
+  @if ($bottom-left==null and $bottom-right==null and $top-right==null) {
+    border-radius: $top-left;
+  }
+
+  @else if ($bottom-left==null and $bottom-right==null) {
+    @include ltr() {
+      border-radius: $top-left $top-right;
+    }
+
+    @include rtl() {
+      border-radius: $top-right $top-left;
+    }
+  }
+
+  @else if $bottom-left==null {
+    @include ltr() {
+      border-radius: $top-left $top-right $bottom-right;
+    }
+
+    @include rtl() {
+      border-radius: $top-right $top-left $top-right $bottom-right;
+    }
+  }
+
+  @else {
+    @include ltr() {
+      border-radius: $top-left $top-right $bottom-right $bottom-left;
+    }
+
+    @include rtl() {
+      border-radius: $top-right $top-left $bottom-left $bottom-right;
+    }
+  }
+}

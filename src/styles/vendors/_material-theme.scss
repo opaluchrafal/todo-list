@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$base-primary: $mat-blue;
+$base-accent: $mat-teal;
+$base-warn: $mat-red;
+
+$custom-primary: (
+  100: mat-color($base-primary, 100),
+  500: $color-brand-primary,
+  700: mat-color($base-primary, 700),
+  contrast: (
+    100: mat-contrast($base-primary, 100),
+    500: $light-primary-text,
+    700: mat-contrast($base-primary, 700)
+  )
+);
+
+$custom-accent: (
+  100: mat-color($base-accent, 100),
+  500: $color-brand-accent,
+  700: mat-color($base-accent, 700),
+  contrast: (
+    100: mat-contrast($base-accent, 100),
+    500: $light-primary-text,
+    700: mat-contrast($base-accent, 700),
+  )
+);
+
+$cmp-primary: mat-palette($custom-primary);
+$cmp-accent:  mat-palette($custom-accent);
+$cmp-warn:    mat-palette($base-warn);
+
+$cmp-theme: mat-light-theme($cmp-primary, $cmp-accent, $cmp-warn);
+
+@include angular-material-theme($cmp-theme);

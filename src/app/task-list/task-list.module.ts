@@ -7,9 +7,16 @@ import { MaterialModule } from '../shared/modules/material.module';
 import { TaskListComponent } from './task-list.component';
 import { TaskComponent } from './task/task.component';
 import { EnterTaskComponent } from './enter-task/enter-task.component';
+import { UiModule } from '../ui/ui.module';
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FormsModule, FlexLayoutModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    FlexLayoutModule,
+    UiModule
+  ],
   declarations: [TaskListComponent, TaskComponent, EnterTaskComponent],
   exports: [TaskListComponent]
 })

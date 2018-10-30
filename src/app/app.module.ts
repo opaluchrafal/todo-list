@@ -20,6 +20,7 @@ import { TaskListModule } from './task-list/task-list.module';
     TaskListModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {}

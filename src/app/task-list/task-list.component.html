@@ -1,7 +1,5 @@
-<app-enter-task></app-enter-task>
-<div *ngFor="let task of tasks">
-  <mat-checkbox [checked]="task.done">{{task.title}}</mat-checkbox>
-</div>
-<div *ngFor="let task of tasks">
+<app-toggle [buttonList]="taskFilterList" [(selectedButton)]="selectedTaskFilter"></app-toggle>
+<app-enter-task (taskEntered)="addTask($event)"></app-enter-task>
+<div *ngFor="let task of getFilteredTasks()">
   <app-task [task]="task"></app-task>
 </div>

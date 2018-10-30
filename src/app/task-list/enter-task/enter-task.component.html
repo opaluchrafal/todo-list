@@ -1,7 +1,8 @@
-<mat-form-field class="full-width" color="accent">
-  <input matInput placeholder="Wpisz tytuł nowego zadania...">
-</mat-form-field>
-<button mat-raised-button color="accent">
-  Dodaj
-  <mat-icon>note_add</mat-icon>
-</button>
+<div class="enter-task-container">
+  <div class="enter-task-input">
+    <input type="text" class="enter-task-title-input" placeholder="Wpisz tytuł nowego zadania..." #titleInput>
+  </div>
+  <div class="enter-task-button">
+    <button class="button" (click)="enterTask(titleInput)">Dodaj zadanie</button>
+  </div>
+</div>

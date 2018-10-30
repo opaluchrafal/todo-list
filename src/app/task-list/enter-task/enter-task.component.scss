@@ -1,9 +1,37 @@
-.full-width {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
+@import 'dependencies';
 
-button.mat-raised-button .mat-icon {
-  line-height: 22px;
+.enter-task {
+  display: block;
+  flex: auto;
+
+  &-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &-input {
+    flex-grow: 1;
+    margin-right: 20px;
+
+  }
+
+  &-title-input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.12);
+    background-color: transparent;
+    color: rgba(64, 64, 64, 0.8);
+    outline: 0;
+  }
+
+  &-title-input:focus,
+  &-title-input:active {
+    border-bottom: 3px solid $color-brand-accent;
+  }
+
+  &-button {
+    flex-grow: 0;
+  }
+
 }
